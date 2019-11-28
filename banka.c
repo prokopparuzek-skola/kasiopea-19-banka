@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 unsigned long long less(int *ucet, int K, int N) {
-    int *pref = malloc(N*sizeof(int));
+    long long int *pref = malloc(N*sizeof(long long int));
     unsigned long long sum = 0;
 	for (int i = 0; i < N; i++) {
 		if (i > 0) {
