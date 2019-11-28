@@ -33,11 +33,10 @@ func main() {
 		tasks[i] = make(chan uint64)
 	}
 	for i := 0; i < T; i++ {
-		println(T)
 		var N, K int
 		fmt.Scanf("%d%d", &N, &K)
 		ucet := make([]int, N)
-		for j := 0; i < N; i++ {
+		for j := 0; j < N; j++ {
 			fmt.Scanf("%d", &ucet[j])
 		}
 		go less(ucet, K, tasks[i])
