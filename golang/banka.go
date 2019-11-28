@@ -33,6 +33,7 @@ func main() {
 		tasks[i] = make(chan uint64)
 	}
 	for i := 0; i < T; i++ {
+		println(i)
 		var N, K int
 		fmt.Scanf("%d%d", &N, &K)
 		ucet := make([]int, N)
