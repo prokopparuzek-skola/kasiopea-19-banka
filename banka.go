@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func less(ucet []int, K int) uint64 {
+func less(ucet []int, K int, task chan uint64) {
 	pref := make([]int, len(ucet))
 	var sum uint64
 	for i, d := range ucet {
@@ -22,20 +22,27 @@ func less(ucet []int, K int) uint64 {
 			}
 		}
 	}
-	return sum
+	task <- sum
 }
 
 func main() {
 	var T int
 	fmt.Scanf("%d", &T)
-	for ; T > 0; T-- {
+	tasks := make([]chan uint64, T)
+	for i := range tasks {
+		tasks[i] = make(chan uint64)
+	}
+	for i := 0; i < T; i++ {
 		println(T)
 		var N, K int
 		fmt.Scanf("%d%d", &N, &K)
 		ucet := make([]int, N)
-		for i := 0; i < N; i++ {
-			fmt.Scanf("%d", &ucet[i])
+		for j := 0; i < N; i++ {
+			fmt.Scanf("%d", &ucet[j])
 		}
-		fmt.Printf("%d\n", less(ucet, K))
+		go less(ucet, K, tasks[i])
+	}
+	for i := 0; i < T; i++ {
+		fmt.Printf("%d\n", <-tasks[i])
 	}
 }
