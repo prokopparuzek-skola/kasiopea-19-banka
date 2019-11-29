@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func less(ucet []int, K int, task chan uint64) {
+	println(ucet)
 	pref := make([]int, len(ucet))
 	var sum uint64
 	for i, d := range ucet {
@@ -22,6 +23,7 @@ func less(ucet []int, K int, task chan uint64) {
 			}
 		}
 	}
+	println("OK")
 	task <- sum
 }
 
